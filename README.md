@@ -1,3 +1,2 @@
-# Ultra-Secret-Project
+# Ultra-Secret-Repository
 
-School assignment 1 

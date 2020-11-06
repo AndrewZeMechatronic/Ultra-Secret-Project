@@ -15,3 +15,4 @@ plot(P(:,1),P(:,2), "-o", "color", "#ff9d12")
 
 hold off
 %Path plotting--------
+a=0;

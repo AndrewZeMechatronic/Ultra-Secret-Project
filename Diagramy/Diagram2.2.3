@@ -1,0 +1,18 @@
+Start;
+
+inputs 
+Us, Index, Gyro/Accel;
+
+UL = Us 1 + Us 2; // vektorovy soucet hodnot ze senzoru leve strany
+
+UR = 3 + Us 4; // vektorovy soucet hodnot ze senzoru prave strany
+
+U = UL + UR; // vektorovy soucet prave a leve strany, vyslednice smeru.
+
+θ = U; // uhel vzslednice U vzhledem k automobilu
+
+Gyro Z; // rotacni akcelerace, mozno vypocitat uhel v zavislosti k prostredi
+
+Accel X Y; // akcelerace, mozno vypocitat zrychleni, rychlost, pozice
+
+end;

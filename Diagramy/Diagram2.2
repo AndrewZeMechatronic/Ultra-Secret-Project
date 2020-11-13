@@ -1,0 +1,36 @@
+start;
+
+|Xp = 0 
+Yp = 0 
+Sber = 1|;
+check:
+// urceni zda probehlo mapovani trate
+if (Sber == 1){
+  Race; // volani programu Race
+  
+  end;
+}
+
+else{
+  // smicka ziskavani dat z automobilu
+  while(while 1){
+    
+    Us; // sber dat (ultrazvukovy senzor)
+    
+    Ulozeni dat do souboru jako tvar trate; 
+    
+    Gyro; // sber dat (ultrazvukovy senzor)
+    
+    Ulozeni data do souboru jako telemetrie;
+    // Pokud se automobil dostal do blizkosti pocatecniho bodu spusti se vypocet, pokud ne dale probiha sber dat.
+    if(Xp == pocatecni && Yp == pocatecni){
+      Pomoci dat tvaru trate a telemetrie vypocitat optimalni drahu; // volani funkce pro vypocet optimalni drahy (eulerova krivka)
+      
+      Sber = 1; // promenna zastavujici sber dat
+      
+      BREAK; // BREAK z while loopu
+      
+      goto check
+    }
+  }
+}

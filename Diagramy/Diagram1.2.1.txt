@@ -1,0 +1,7 @@
+start;
+define S, C; //S...front ar
+ea C...exploitation of resi
+stance
+load velocity;
+air resistance = 0.602SCv^2;
+end;

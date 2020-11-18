@@ -1,0 +1,22 @@
+start;
+load velocity;
+load acceleration; //accele
+ration of formula
+if(velocity != 0 && no swit
+ched keys){ //no switched k
+eys and formula is in move
+ load switched gear;
+ if(gear = 1){
+ velocity = v - a;
+ }
+ if(gear = 2){
+ velocity = v - 2/3a;
+ }
+ if(gear = 3){
+ velocty = v - 1/3a;
+ }
+ if(gear = R){
+ velocity = v + a;
+ }
+}
+end;

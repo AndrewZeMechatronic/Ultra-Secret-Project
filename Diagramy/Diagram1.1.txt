@@ -1,0 +1,23 @@
+start;
+input W, S, A, D; // input
+keys
+int f, b, r, l; // control
+variables
+// if one of input keys equ
+als HIGH write input keys v
+alues into control variable
+s
+if(W || S || A || D = HIGH)
+{
+ f = W
+ b = -S
+ r = invsin(D)
+ l = invsin(A)
+}
+else{
+f = LOW
+b = LOW
+r = LOW
+l = LOW
+}
+end;

@@ -1,0 +1,23 @@
+start;
+load velocity;
+if(v = 0){
+ goto label
+ }
+else{
+ if(v > 0){
+ if(v > 30){
+ if(v > 60){
+ disp gear 3;
+ goto label;
+ }
+ disp gear 2;
+ goto label;
+ }
+ disp gear 1;
+ goto label;
+ }
+ disp gear R;
+ goto label;
+}
+label:
+end

@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.6788136280082496 -0.7058209874472666 -0.2025556518817563 5.500618426658253
-  position 8.877867487659346 11.71891081833302 13.154060817676442
+  orientation 0.13287969532769275 0.9894947803590601 0.056947925438903306 5.655753556862167
+  position -14.816066629818817 7.276607436710002 20.782077169393695
 }
 TexturedBackground {
   texture "noon_building_overcast"
@@ -86,104 +86,69 @@ Solid {
     }
   ]
   name "TestTrack.obj"
+  boundingObject USE SHAPE
+}
+RectangleArena {
+  floorSize 20 20
+  floorTileSize 5 5
+  wallHeight 1
 }
 Robot {
   translation 0 2 0
   children [
     Hinge2Joint {
       jointParameters HingeJointParameters {
-        axis 0 1 0
-        anchor 1.5 0 1
-        minStop -1
-        maxStop 1
+        axis 0 0 1
+        anchor -3 -0.15 -1
         suspensionAxis 0 1 0
       }
       jointParameters2 JointParameters {
-      }
-      device [
-        RotationalMotor {
-          name "SteerLeft"
-        }
-      ]
-      device2 [
-        Brake {
-        }
-      ]
-      endPoint Solid {
-        translation 1.5 0 1
-        rotation 1 0 0 1.5707996938995747
-        children [
-          DEF kolo Shape {
-            appearance Rubber {
-            }
-            geometry Cylinder {
-              height 0.5
-            }
-          }
-        ]
-        name "solid(3)"
-        boundingObject USE kolo
-        physics Physics {
-        }
-      }
-    }
-    Hinge2Joint {
-      jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 1.5 0 -1
-        minStop -1
-        maxStop 1
-        suspensionAxis 0 1 0
       }
-      jointParameters2 JointParameters {
-      }
-      device [
-        RotationalMotor {
-          name "SteerLeft"
-        }
-      ]
-      device2 [
-        Brake {
-        }
-      ]
       endPoint Solid {
-        translation 1.5 0 -1
+        translation -3 -0.15 -1.25
         rotation 1 0 0 1.5707996938995747
         children [
           Shape {
             appearance Rubber {
             }
-            geometry Cylinder {
+            geometry DEF FrontLeftWheel1 Cylinder {
               height 0.5
+              radius 0.5
             }
           }
         ]
         name "solid(2)"
+        boundingObject USE FrontLeftWheel1
+        physics Physics {
+          mass 1
+        }
       }
     }
-    HingeJoint {
+    Hinge2Joint {
       jointParameters HingeJointParameters {
         axis 0 0 1
-        anchor -1.5 0 -1
+        anchor -3 -0.15 1
+        suspensionAxis 0 1 0
       }
-      device [
-        RotationalMotor {
-          name "BackLeftWheel"
-        }
-      ]
+      jointParameters2 JointParameters {
+        axis 0 1 0
+      }
       endPoint Solid {
-        translation -1.5004863196444969 0.000479388420418545 -1.006403237590693
-        rotation 0.9999990390259987 0.00098268170159074 -0.0009778976185365518 1.569242544315164
+        translation -3 -0.15 1.25
+        rotation 1 0 0 1.5707996938995747
         children [
-          DEF koloZ Shape {
-            appearance TireRubber {
+          Shape {
+            appearance Rubber {
             }
-            geometry Cylinder {
+            geometry DEF FrontLeftWheel1 Cylinder {
               height 0.5
+              radius 0.5
             }
           }
         ]
-        boundingObject USE kolo
+        name "solid(3)"
+        boundingObject USE FrontLeftWheel1
         physics Physics {
           mass 1
         }
@@ -192,43 +157,75 @@ Robot {
     HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 0 1
-        anchor -1.5 0 1
+        anchor 2.45 -0.15 -1
       }
       device [
         RotationalMotor {
-          name "BackRightWheel"
         }
       ]
       endPoint Solid {
-        translation -1.5 0 1
-        rotation 1 0 0 1.5707996938995747
+        translation 2.45 -0.149977 -1.25
+        rotation 1 0 0 1.5707814043971073
         children [
           Shape {
-            appearance TireRubber {
+            appearance Rubber {
             }
-            geometry Cylinder {
+            geometry DEF BackLeftWheel Cylinder {
               height 0.5
+              radius 0.5
+            }
+          }
+        ]
+        boundingObject USE BackLeftWheel
+        physics Physics {
+          mass 1
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+        anchor 2.45 -0.15 1
+      }
+      device [
+        RotationalMotor {
+          acceleration 1
+        }
+      ]
+      endPoint Solid {
+        translation 2.45 -0.149977 1.25
+        rotation 1 0 0 1.5707814043971073
+        children [
+          Shape {
+            appearance Rubber {
+            }
+            geometry DEF BackLeftWheel Cylinder {
+              height 0.5
+              radius 0.5
             }
           }
         ]
         name "solid(1)"
+        boundingObject USE BackLeftWheel
+        physics Physics {
+          mass 1
+        }
       }
     }
-    DEF body Shape {
+    Shape {
       appearance PBRAppearance {
+        roughness 1
       }
-      geometry Box {
-        size 3 0.5 1.5
+      geometry DEF FormulaBody Mesh {
+        url [
+          "C:/Users/ondra/Desktop/Python/PA prjekt 1/FormulaSmall.obj"
+        ]
       }
     }
   ]
-  boundingObject USE body
+  name "robot(1)"
+  boundingObject USE FormulaBody
   physics Physics {
     mass 1
   }
-}
-RectangleArena {
-  floorSize 20 20
-  floorTileSize 5 5
-  wallHeight 1
 }

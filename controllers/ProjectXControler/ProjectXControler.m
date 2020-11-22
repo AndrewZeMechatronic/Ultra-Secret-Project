@@ -7,8 +7,8 @@
 
 % uncomment the next two lines if you want to use
 % MATLAB's desktop to interact with the controller:
-%desktop;
-%keyboard;
+% desktop;
+% keyboard;
 
 TIME_STEP = 64;
 
@@ -29,8 +29,7 @@ while wb_robot_step(TIME_STEP) ~= -1
   % Process here sensor data, images, etc.
 
   % send actuator commands, e.g.:
-  %  wb_motor_set_postion(motor, 10.0);
-
+  wb_motor_set_velocity(rotational motor, 1)
   % if your code plots some graphics, it needs to flushed like this:
   drawnow;
 

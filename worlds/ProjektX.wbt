@@ -228,4 +228,5 @@ Robot {
   physics Physics {
     mass 1
   }
+  controller "ProjectXControler"
 }

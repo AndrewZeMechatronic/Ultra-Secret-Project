@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.13287969532769275 0.9894947803590601 0.056947925438903306 5.655753556862167
-  position -14.816066629818817 7.276607436710002 20.782077169393695
+  orientation 0.9976215915736213 -0.0105665644594053 -0.06811393206708972 5.583189848598684
+  position 0.7120600393548369 25.97055323926051 11.670320813745928
 }
 TexturedBackground {
   texture "noon_building_overcast"
@@ -89,12 +89,12 @@ Solid {
   boundingObject USE SHAPE
 }
 RectangleArena {
-  floorSize 20 20
+  floorSize 40 40
   floorTileSize 5 5
   wallHeight 1
 }
 Robot {
-  translation 0 2 0
+  translation 0 2 -17.15
   children [
     Hinge2Joint {
       jointParameters HingeJointParameters {
@@ -105,9 +105,15 @@ Robot {
       jointParameters2 JointParameters {
         axis 0 1 0
       }
+      device [
+        RotationalMotor {
+          minPosition -10
+          maxPosition 10
+        }
+      ]
       endPoint Solid {
-        translation -3 -0.15 -1.25
-        rotation 1 0 0 1.5707996938995747
+        translation -3 -0.15 -1.2499999999999998
+        rotation 1 2.0022208467041332e-19 6.747920878908702e-20 1.5707996938995747
         children [
           Shape {
             appearance Rubber {
@@ -134,9 +140,15 @@ Robot {
       jointParameters2 JointParameters {
         axis 0 1 0
       }
+      device [
+        RotationalMotor {
+          minPosition -10
+          maxPosition 10
+        }
+      ]
       endPoint Solid {
-        translation -3 -0.15 1.25
-        rotation 1 0 0 1.5707996938995747
+        translation -3 -0.15 1.2499999999999998
+        rotation 1 -3.5816702325722514e-20 -2.9358647577699603e-19 1.5707996938995752
         children [
           Shape {
             appearance Rubber {
@@ -161,11 +173,12 @@ Robot {
       }
       device [
         RotationalMotor {
+          name "rotational motor2"
         }
       ]
       endPoint Solid {
-        translation 2.45 -0.149977 -1.25
-        rotation 1 0 0 1.5707814043971073
+        translation 2.450000000000185 -0.149977 -1.25
+        rotation 1 -4.029948896210463e-09 -4.030009033159508e-09 1.5707814043971071
         children [
           Shape {
             appearance Rubber {
@@ -189,12 +202,13 @@ Robot {
       }
       device [
         RotationalMotor {
+          name "rotational motor1"
           acceleration 1
         }
       ]
       endPoint Solid {
-        translation 2.45 -0.149977 1.25
-        rotation 1 0 0 1.5707814043971073
+        translation 2.4499999999998154 -0.149977 1.25
+        rotation 1 3.9539853757199285e-09 3.954044379102875e-09 1.5707814043971071
         children [
           Shape {
             appearance Rubber {

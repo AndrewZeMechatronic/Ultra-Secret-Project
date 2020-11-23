@@ -1,0 +1,96 @@
+START;
+block Variables{
+MicrocontrolerMain:
+
+  //List of global variables 
+  //Forward and Backward speed
+  //Steering variable
+  //Sensor variables (S1,...,S4)
+  //Input variables W,A,S,D,C
+  //and additional control variables
+  Variables
+  ForwardV,
+  BackwardV,
+  Steer,
+  S1Dist,
+  S2Dist,
+  S3Dist,
+  S4Dist,
+  Gas, Break,
+  W,A,S,D,C
+  Switch;
+  
+  //List of calc variables
+  //Sx = Front area of vehicle
+  //Cx = coeficient of air resistance
+  //Mass of vehicle, immediate force and absolute immediate speed
+  Resistance calculation variables
+  Sx, Cx, Mass, Force, Va;
+
+  AI variables
+  RACE, LAP;
+}
+block Main{
+MicrocontrolerLoop:
+
+  if(C==HIGH){
+    
+    if(C==HIGH && Switch == 1){
+      Switch = 0;
+    }
+    else{
+      Switch = 1;
+    }
+    while(C==HIGH){
+      
+      if(Switch == 1){
+        Print "Switching to manual control";
+      }
+      else{
+        Print "Switching to AI control";
+      }
+      
+    }
+  }
+  if(Switch==1){
+          ManualLoop:
+    if(C==HIGH){
+          goto MicrocontrolerLoop
+        }
+        else{
+    call Manual();
+        }
+      loop ManualLoop
+  }
+  else{
+    AILoop:
+    if(C==HIGH){
+      goto MicrocontrolerLoop
+    }
+    else{
+      call AI();
+    }
+    loop AILoop
+  }
+}
+loop MicrocontrolerLoop
+
+function Manual(){
+  ManualStart;
+  if(W||S||A||D==HIGH){
+    ForwardV = W + (W/10);
+    BackwardV = D + (W/10);
+    if(A==HIGH){
+      Steer = -1;
+    }
+    else if(D==HIGH){
+      Steer = 1;
+    }
+    else{
+      Steer = 0;
+    }
+  }
+  else{
+    ForwardV = W/2;
+    BackwardV = W/2;
+    Steer = 0;

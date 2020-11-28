@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.9976215915736213 -0.0105665644594053 -0.06811393206708972 5.583189848598684
-  position 0.7120600393548369 25.97055323926051 11.670320813745928
+  orientation 0.685146901070139 -0.6675179713463156 -0.291536416050696 5.3118985156748275
+  position 14.882413256768643 24.438257390526797 1.1861248892228438
 }
 TexturedBackground {
   texture "noon_building_overcast"
@@ -96,135 +96,191 @@ RectangleArena {
 Robot {
   translation 0 2 -17.15
   children [
-    Hinge2Joint {
-      jointParameters HingeJointParameters {
-        axis 0 0 1
-        anchor -3 -0.15 -1
-        suspensionAxis 0 1 0
-      }
-      jointParameters2 JointParameters {
-        axis 0 1 0
-      }
-      device [
-        RotationalMotor {
-          minPosition -10
-          maxPosition 10
-        }
-      ]
-      endPoint Solid {
-        translation -3 -0.15 -1.2499999999999998
-        rotation 1 2.0022208467041332e-19 6.747920878908702e-20 1.5707996938995747
-        children [
-          Shape {
-            appearance Rubber {
+    Transform {
+      translation -3 -0.15 -1.25
+      rotation 1 0 0 1.5707996938995747
+      children [
+        Hinge2Joint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+          }
+          jointParameters2 JointParameters {
+            axis 0 1 0
+          }
+          device [
+            PositionSensor {
+              name "RightSteerSensor"
             }
-            geometry DEF FrontLeftWheel1 Cylinder {
-              height 0.5
-              radius 0.5
+            RotationalMotor {
+              name "RightSteer"
+              minPosition -0.8
+              maxPosition 0.8
+              maxTorque 10000
+              sound ""
+            }
+          ]
+          device2 [
+            RotationalMotor {
+              name "RightFrontMotor"
+              maxVelocity 20
+              maxTorque 0
+              sound ""
+            }
+            PositionSensor {
+              name "RightFrontSensor"
+            }
+            Brake {
+              name "RightFrontBrake"
+            }
+          ]
+          endPoint Solid {
+            children [
+              Shape {
+                appearance Rubber {
+                }
+                geometry DEF FrontLeftWheel1 Cylinder {
+                  height 0.5
+                  radius 0.5
+                }
+              }
+            ]
+            name "Front left wheel(1)"
+            boundingObject USE FrontLeftWheel1
+            physics Physics {
+              mass 1
             }
           }
-        ]
-        name "solid(2)"
-        boundingObject USE FrontLeftWheel1
-        physics Physics {
-          mass 1
         }
-      }
+      ]
     }
-    Hinge2Joint {
-      jointParameters HingeJointParameters {
-        axis 0 0 1
-        anchor -3 -0.15 1
-        suspensionAxis 0 1 0
-      }
-      jointParameters2 JointParameters {
-        axis 0 1 0
-      }
-      device [
-        RotationalMotor {
-          minPosition -10
-          maxPosition 10
-        }
-      ]
-      endPoint Solid {
-        translation -3 -0.15 1.2499999999999998
-        rotation 1 -3.5816702325722514e-20 -2.9358647577699603e-19 1.5707996938995752
-        children [
-          Shape {
-            appearance Rubber {
+    Transform {
+      translation -3 -0.15 1.25
+      rotation 1 0 0 1.5707996938995747
+      children [
+        Hinge2Joint {
+          jointParameters HingeJointParameters {
+            axis 0 0 1
+          }
+          jointParameters2 JointParameters {
+            axis 0 1 0
+          }
+          device [
+            PositionSensor {
+              name "LeftSteerSensor"
             }
-            geometry DEF FrontLeftWheel1 Cylinder {
-              height 0.5
-              radius 0.5
+            RotationalMotor {
+              name "LeftSteer"
+              minPosition -0.8
+              maxPosition 0.8
+              maxTorque 10000
+              sound ""
+            }
+          ]
+          device2 [
+            RotationalMotor {
+              name "LeftFrontMotor"
+              maxVelocity 20
+              maxTorque 0
+              sound ""
+            }
+            PositionSensor {
+              name "LeftFrontSensor"
+            }
+            Brake {
+              name "LeftFrontBrake"
+            }
+          ]
+          endPoint Solid {
+            children [
+              Shape {
+                appearance Rubber {
+                }
+                geometry DEF FrontLeftWheel1 Cylinder {
+                  height 0.5
+                  radius 0.5
+                }
+              }
+            ]
+            name "Front left wheel"
+            boundingObject USE FrontLeftWheel1
+            physics Physics {
+              mass 1
             }
           }
-        ]
-        name "solid(3)"
-        boundingObject USE FrontLeftWheel1
-        physics Physics {
-          mass 1
         }
-      }
+      ]
     }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        axis 0 0 1
-        anchor 2.45 -0.15 -1
-      }
-      device [
-        RotationalMotor {
-          name "rotational motor2"
-        }
-      ]
-      endPoint Solid {
-        translation 2.450000000000185 -0.149977 -1.25
-        rotation 1 -4.029948896210463e-09 -4.030009033159508e-09 1.5707814043971071
-        children [
-          Shape {
-            appearance Rubber {
+    Transform {
+      translation 2.45 -0.15 -1.25
+      rotation 1 0 0 1.5707996938995747
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+          }
+          device [
+            RotationalMotor {
+              name "RightGasMotor"
+              maxVelocity 50
+              maxTorque 10000000
+              sound ""
             }
-            geometry DEF BackLeftWheel Cylinder {
-              height 0.5
-              radius 0.5
+          ]
+          endPoint Solid {
+            children [
+              Shape {
+                appearance Rubber {
+                }
+                geometry DEF BackLeftWheel Cylinder {
+                  height 0.5
+                  radius 0.5
+                }
+              }
+            ]
+            boundingObject USE BackLeftWheel
+            physics Physics {
+              mass 1
             }
           }
-        ]
-        boundingObject USE BackLeftWheel
-        physics Physics {
-          mass 1
         }
-      }
+      ]
     }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        axis 0 0 1
-        anchor 2.45 -0.15 1
-      }
-      device [
-        RotationalMotor {
-          name "rotational motor1"
-          acceleration 1
-        }
-      ]
-      endPoint Solid {
-        translation 2.4499999999998154 -0.149977 1.25
-        rotation 1 3.9539853757199285e-09 3.954044379102875e-09 1.5707814043971071
-        children [
-          Shape {
-            appearance Rubber {
+    Transform {
+      translation 2.45 -0.15 1.25
+      rotation 1 0 0 1.5707996938995747
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            axis 0 1 0
+          }
+          device [
+            RotationalMotor {
+              name "LeftGasMotor"
+              acceleration 1
+              maxVelocity 50
+              maxTorque 10000000
+              sound ""
             }
-            geometry DEF BackLeftWheel Cylinder {
-              height 0.5
-              radius 0.5
+          ]
+          endPoint Solid {
+            children [
+              Shape {
+                appearance Rubber {
+                }
+                geometry DEF BackLeftWheel Cylinder {
+                  height 0.5
+                  radius 0.5
+                }
+              }
+            ]
+            name "solid(1)"
+            boundingObject USE BackLeftWheel
+            physics Physics {
+              mass 1
             }
           }
-        ]
-        name "solid(1)"
-        boundingObject USE BackLeftWheel
-        physics Physics {
-          mass 1
         }
-      }
+      ]
     }
     Shape {
       appearance PBRAppearance {
@@ -237,7 +293,7 @@ Robot {
       }
     }
   ]
-  name "robot(1)"
+  name "Formula"
   boundingObject USE FormulaBody
   physics Physics {
     mass 1

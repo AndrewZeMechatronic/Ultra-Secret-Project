@@ -94,7 +94,7 @@ RectangleArena {
   wallHeight 1
 }
 Robot {
-  translation 0 2 -17.15
+  translation 9.44 2 -17.15
   children [
     Transform {
       translation -3 -0.15 -1.25
@@ -288,7 +288,7 @@ Robot {
       }
       geometry DEF FormulaBody Mesh {
         url [
-          "C:/Users/ondra/Desktop/Python/PA prjekt 1/FormulaSmall.obj"
+          "assety/FormulaSmall2nd.obj"
         ]
       }
     }

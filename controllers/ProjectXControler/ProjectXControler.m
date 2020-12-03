@@ -30,7 +30,7 @@ wb_motor_set_position(LeftSteer, 0);
 
 LeftGas = wb_robot_get_device('LeftGasMotor');
 wb_motor_set_velocity(LeftGas, 0);
-wb_motor_set_position(LefttGas, inf);
+wb_motor_set_position(LeftGas, inf);
 
 RightGas = wb_robot_get_device('RightGasMotor');
 wb_motor_set_velocity(RightGas, 0);
@@ -78,8 +78,8 @@ while wb_robot_step(TIME_STEP) ~= -1
   wb_motor_set_position(RightSteer, Steer);
   wb_motor_set_position(LeftSteer, Steer);
   
-  wb_motor_set_velocity(LeftGas, 5);
-  wb_motor_set_velocity(RightGas, 5);
+  wb_motor_set_velocity(LeftGas, 10);
+  wb_motor_set_velocity(RightGas, 10);
   % if your code plots some graphics, it needs to flushed like this:
   %drawnow;
 

@@ -8,5 +8,5 @@ projectionMode: PERSPECTIVE
 renderingMode: PLAIN
 orthographicViewHeight: 1
 textFiles: 0 "controllers/ProjectXControler/ProjectXControler.m"
-globalOptionalRendering: CoordinateSystem::JointAxes::ConnectorAxes
+globalOptionalRendering: JointAxes::ConnectorAxes::LidarRaysPaths::LightSensorRays::AllBoundingObjects::RangeFinderFrustums::DistanceSensorRays
 consoles: Console:All:All

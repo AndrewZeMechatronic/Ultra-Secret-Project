@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.685146901070139 -0.6675179713463156 -0.291536416050696 5.3118985156748275
-  position 14.882413256768643 24.438257390526797 1.1861248892228438
+  orientation 0.4340723085461053 0.8920985236314848 0.12546495561701637 5.316031248217108
+  position -3.543588225142953 11.640068525566841 -6.30984283260201
 }
 TexturedBackground {
   texture "noon_building_overcast"
@@ -96,6 +96,23 @@ RectangleArena {
 Robot {
   translation 9.44 2 -17.15
   children [
+    Transform {
+      translation -4.25 1.51 0
+      children [
+        DistanceSensor {
+          children [
+            Shape {
+              geometry Cylinder {
+                height 0.1
+                radius 0.05
+              }
+            }
+          ]
+          type "laser"
+          aperture 5
+        }
+      ]
+    }
     Transform {
       translation -3 -0.15 -1.25
       rotation 1 0 0 1.5707996938995747

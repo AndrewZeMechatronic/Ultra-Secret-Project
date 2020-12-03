@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.4340723085461053 0.8920985236314848 0.12546495561701637 5.316031248217108
-  position -3.543588225142953 11.640068525566841 -6.30984283260201
+  orientation 0.2819432530375681 -0.911577697246435 -0.29922249906963994 4.802532776264908
+  position 37.048399726630464 22.89371026975858 -2.1139811981310785
 }
 TexturedBackground {
   texture "noon_building_overcast"
@@ -137,12 +137,6 @@ Robot {
             }
           ]
           device2 [
-            RotationalMotor {
-              name "RightFrontMotor"
-              maxVelocity 20
-              maxTorque 0
-              sound ""
-            }
             PositionSensor {
               name "RightFrontSensor"
             }
@@ -194,12 +188,6 @@ Robot {
             }
           ]
           device2 [
-            RotationalMotor {
-              name "LeftFrontMotor"
-              maxVelocity 20
-              maxTorque 0
-              sound ""
-            }
             PositionSensor {
               name "LeftFrontSensor"
             }

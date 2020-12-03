@@ -40,7 +40,8 @@ Steer = 0;
 Gas = 0;
 
 
-wb_keyboard_enable(1)
+wb_keyboard_enable(1);
+
 
 
 %motors = wb_robot_get_device('rotational motor');
@@ -57,13 +58,13 @@ while wb_robot_step(TIME_STEP) ~= -1
   Key = wb_keyboard_get_key();
   
   switch (Key)
-    case WB_KEYBOARD_RIGHT
+    case WB_KEYBOARD_RIGHT  
       Steer = Steer + 0.02;
-    case WB_KEYBOARD_LEFT
+    case WB_KEYBOARD_LEFT 
       Steer = Steer - 0.02;
-    case WB_KEYBOARD_UP
+    case WB_KEYBOARD_UP 
       Gas = Gas + 0.5;
-    case WB_KEYBOARD_DOWN
+    case WB_KEYBOARD_DOWN 
       Gas = Gas - 0.5;
   end
   
@@ -78,8 +79,8 @@ while wb_robot_step(TIME_STEP) ~= -1
   wb_motor_set_position(RightSteer, Steer);
   wb_motor_set_position(LeftSteer, Steer);
   
-  wb_motor_set_velocity(LeftGas, 10);
-  wb_motor_set_velocity(RightGas, 10);
+  wb_motor_set_velocity(LeftGas, Gas);
+  wb_motor_set_velocity(RightGas, Gas);
   % if your code plots some graphics, it needs to flushed like this:
   %drawnow;
 

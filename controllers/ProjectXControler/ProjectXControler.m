@@ -53,6 +53,8 @@ wb_keyboard_enable(1);
 % and leave the loop when Webots signals the termination
 %
 
+
+
 while wb_robot_step(TIME_STEP) ~= -1
   
   Key = wb_keyboard_get_key();

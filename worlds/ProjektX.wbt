@@ -96,6 +96,10 @@ RectangleArena {
 Robot {
   translation 9.44 1.97 -17.15
   children [
+    GPS {
+    }
+    Display {
+    }
     Camera {
       translation 0.32 0.66 -3.67318e-08
       rotation 0 1 0 1.5708
@@ -111,7 +115,6 @@ Robot {
           }
         }
       ]
-      name "Camera"
       fieldOfView 1
     }
     Transform {

@@ -19,9 +19,9 @@ desktop;
 
 TIME_STEP = 64;
 
-% get and enable devices, e.g.:
-%  camera = wb_robot_get_device('camera');
-%  wb_camera_enable(camera, TIME_STEP);
+wb_keyboard_enable(1);
+
+
 RightSteer = wb_robot_get_device('RightSteer');
 wb_motor_set_position(RightSteer, 0);
 
@@ -36,11 +36,18 @@ RightGas = wb_robot_get_device('RightGasMotor');
 wb_motor_set_velocity(RightGas, 0);
 wb_motor_set_position(RightGas, inf);
 
-Steer = 0;
-Gas = 0;
+camera = wb_robot_get_device('camera');
+wb_camera_enable(camera, TIME_STEP);
+
+gps = wb_robot_get_device('gps');
+wb_gps_enable(gps, TIME_STEP);
 
 
-wb_keyboard_enable(1);
+
+
+display = wb_robot_get_device('display');
+width = wb_display_get_width(display);
+height = wb_display_get_height(display);
 
 
 
@@ -54,6 +61,8 @@ wb_keyboard_enable(1);
 %
 
 
+Steer = 0;
+Gas = 0;
 
 while wb_robot_step(TIME_STEP) ~= -1
   
@@ -68,6 +77,7 @@ while wb_robot_step(TIME_STEP) ~= -1
       Gas = Gas + 0.5;
     case WB_KEYBOARD_DOWN 
       Gas = Gas - 0.5;
+      
   end
   
   % read the sensors, e.g.:

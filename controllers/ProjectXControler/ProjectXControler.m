@@ -79,19 +79,13 @@ beta = (acos(DstSensorR_Value/direction)) - pi/4;
   Steer = -beta
 
   switch (Key)
-    case WB_KEYBOARD_RIGHT  
-      Steer = Steer + 0.02;
-    case WB_KEYBOARD_LEFT 
-      Steer = Steer - 0.02;
     case WB_KEYBOARD_UP 
       Gas = Gas + 2;
     case WB_KEYBOARD_DOWN 
       Gas = Gas - 2;
-    case WB_KEYBOARD_ALT
-      Gas = 0;
   
   
-end
+  end
   
   % read the sensors, e.g.:
   %  rgb = wb_camera_get_image(camera);

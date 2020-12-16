@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.10282627742847664 0.9566359254209621 0.2725334160505485 2.0231248308857355
-  position 15.189954420502163 8.668151113161585 -39.36237764738718
+  orientation -0.27335238169909076 -0.9603079986798811 -0.05556098533031898 1.1050851533471084
+  position -9.421919783527313 6.288562864402298 -30.48740642811134
   follow "Formula"
   followType "Mounted Shot"
 }
@@ -62,9 +62,9 @@ RectangleArena {
   wallHeight 0
 }
 Robot {
-  translation 4.03002 0.32 -37.16
-  rotation 0 1 0 0.523597
-  scale 0.25 0.25 0.25
+  translation 4.03002 0.74 -37.16
+  rotation 0 1 0 -2.6179953071795863
+  scale 0.5 0.5 0.5
   children [
     DistanceSensor {
       translation 0.35 0.7 -0.4
@@ -72,7 +72,7 @@ Robot {
       name "DstSensorR"
       lookupTable [
         0 1 0
-        20 1024 0
+        20 2048 0
       ]
       type "laser"
       aperture 0.5
@@ -83,7 +83,7 @@ Robot {
       name "DstSensorL"
       lookupTable [
         0 1 0
-        20 1024 0
+        20 2048 0
       ]
       type "laser"
       aperture 0.5

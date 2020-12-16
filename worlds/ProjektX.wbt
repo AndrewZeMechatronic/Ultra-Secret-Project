@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.35658821105707805 -0.8711939392423891 -0.3374403176303053 1.5445377782389824
-  position 0.3477430365493563 9.484617587152266 -15.503003509535569
+  orientation 0.9634661657947856 -0.25922403027237606 -0.06734871563764742 5.411946808932064
+  position 12.476350928032119 11.911693436440792 -8.643064655438742
 }
 TexturedBackground {
   texture "noon_building_overcast"
@@ -96,6 +96,40 @@ RectangleArena {
 Robot {
   translation 9.44 1.97 -17.15
   children [
+    DistanceSensor {
+      translation 0.35 0.7 -0.4
+      rotation 0 1 0 2.35619
+      children [
+        Shape {
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      name "DstSensorR"
+      lookupTable [
+        0 0 0
+        0.01 1000 0
+      ]
+      type "laser"
+    }
+    DistanceSensor {
+      translation 0.35 0.7 0.4
+      rotation 0 1 0 -2.356185307179586
+      children [
+        Shape {
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+      name "DstSensorL"
+      lookupTable [
+        0 0 0
+        0.01 1000 0
+      ]
+      type "laser"
+    }
     GPS {
     }
     Display {
@@ -116,23 +150,8 @@ Robot {
         }
       ]
       fieldOfView 1
-    }
-    Transform {
-      translation -4.25 1.51 0
-      children [
-        DistanceSensor {
-          children [
-            Shape {
-              geometry Cylinder {
-                height 0.1
-                radius 0.05
-              }
-            }
-          ]
-          type "laser"
-          aperture 5
-        }
-      ]
+      width 256
+      height 256
     }
     Transform {
       translation -3 -0.15 -1.25
@@ -173,6 +192,7 @@ Robot {
                 geometry DEF FrontLeftWheel1 Cylinder {
                   height 0.5
                   radius 0.5
+                  top FALSE
                 }
               }
             ]
@@ -222,6 +242,7 @@ Robot {
                 appearance Rubber {
                 }
                 geometry DEF FrontLeftWheel1 Cylinder {
+                  bottom FALSE
                   height 0.5
                   radius 0.5
                 }

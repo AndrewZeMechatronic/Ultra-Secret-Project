@@ -20,6 +20,7 @@ desktop;
 TIME_STEP = 64;
 
 wb_keyboard_enable(1);
+wb_distance_sensor_enable(1);
 
 
 RightSteer = wb_robot_get_device('RightSteer');
@@ -74,10 +75,11 @@ while wb_robot_step(TIME_STEP) ~= -1
     case WB_KEYBOARD_LEFT 
       Steer = Steer - 0.02;
     case WB_KEYBOARD_UP 
-      Gas = Gas + 0.5;
+      Gas
+      Gas = Gas + 2;
     case WB_KEYBOARD_DOWN 
-      Gas = Gas - 0.5;
-      
+      Gas = Gas - 2;
+      Gas
   end
   
   % read the sensors, e.g.:
@@ -93,6 +95,7 @@ while wb_robot_step(TIME_STEP) ~= -1
   
   wb_motor_set_velocity(LeftGas, Gas);
   wb_motor_set_velocity(RightGas, Gas);
+  DstSensorL
   % if your code plots some graphics, it needs to flushed like this:
   %drawnow;
 

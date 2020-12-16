@@ -17,7 +17,7 @@
 desktop;
 %keyboard;
 
-TIME_STEP = 64;
+TIME_STEP = 128;
 
 wb_keyboard_enable(1);
 

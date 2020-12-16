@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.6602687299182047 0.660149803026256 0.3581165199437136 0.983463229406394
-  position 7.061099727842573 2.9450948664722287 -31.853851163362204
+  orientation -0.23893009142577146 0.9169558223088587 0.31953784023986437 1.555489889904196
+  position 8.026833352134599 3.036395583005349 -36.07896089350506
   follow "Formula"
   followType "Mounted Shot"
 }
@@ -72,7 +72,7 @@ Robot {
       name "DstSensorR"
       lookupTable [
         0 1 0
-        200 1024 0
+        20 1024 0
       ]
       type "laser"
       aperture 0.5
@@ -83,7 +83,7 @@ Robot {
       name "DstSensorL"
       lookupTable [
         0 1 0
-        200 1024 0
+        20 1024 0
       ]
       type "laser"
       aperture 0.5
@@ -150,7 +150,6 @@ Robot {
                 geometry DEF FrontLeftWheel1 Cylinder {
                   height 0.5
                   radius 0.5
-                  top FALSE
                 }
               }
             ]
@@ -200,7 +199,6 @@ Robot {
                 appearance Rubber {
                 }
                 geometry DEF FrontLeftWheel1 Cylinder {
-                  bottom FALSE
                   height 0.5
                   radius 0.5
                 }
@@ -289,6 +287,7 @@ Robot {
     }
     Shape {
       appearance PBRAppearance {
+        baseColor 1 0 0
         roughness 1
       }
       geometry DEF FormulaBody Mesh {

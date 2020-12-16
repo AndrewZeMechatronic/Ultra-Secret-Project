@@ -20,8 +20,11 @@ desktop;
 TIME_STEP = 64;
 
 wb_keyboard_enable(1);
-wb_distance_sensor_enable(1);
 
+DstSensorL = wb_robot_get_device('DstSensorL');
+DstSensorR = wb_robot_get_device('DstSensorR');
+wb_distance_sensor_enable(DstSensorL, TIME_STEP);
+wb_distance_sensor_enable(DstSensorR, TIME_STEP); 
 
 RightSteer = wb_robot_get_device('RightSteer');
 wb_motor_set_position(RightSteer, 0);
@@ -37,18 +40,16 @@ RightGas = wb_robot_get_device('RightGasMotor');
 wb_motor_set_velocity(RightGas, 0);
 wb_motor_set_position(RightGas, inf);
 
-camera = wb_robot_get_device('camera');
-wb_camera_enable(camera, TIME_STEP);
+%camera = wb_robot_get_device('camera');
+%wb_camera_enable(camera, TIME_STEP);
 
-gps = wb_robot_get_device('gps');
-wb_gps_enable(gps, TIME_STEP);
-
-
+%gps = wb_robot_get_device('gps');
+%wb_gps_enable(gps, TIME_STEP);
 
 
-display = wb_robot_get_device('display');
-width = wb_display_get_width(display);
-height = wb_display_get_height(display);
+%display = wb_robot_get_device('display');
+%width = wb_display_get_width(display);
+%height = wb_display_get_height(display);
 
 
 
@@ -66,21 +67,31 @@ Steer = 0;
 Gas = 0;
 
 while wb_robot_step(TIME_STEP) ~= -1
-  
-  Key = wb_keyboard_get_key();
-  
+ 
+Key = wb_keyboard_get_key(); 
+
+
+
+DstSensorL_Value = wb_distance_sensor_get_value(DstSensorL);
+DstSensorR_Value = wb_distance_sensor_get_value(DstSensorR);
+direction = sqrt(DstSensorL_Value^2 + DstSensorR_Value^2);
+beta = (acos(DstSensorR_Value/direction)) - pi/4;
+  Steer = -beta
+
   switch (Key)
     case WB_KEYBOARD_RIGHT  
       Steer = Steer + 0.02;
     case WB_KEYBOARD_LEFT 
       Steer = Steer - 0.02;
     case WB_KEYBOARD_UP 
-      Gas
       Gas = Gas + 2;
     case WB_KEYBOARD_DOWN 
       Gas = Gas - 2;
-      Gas
-  end
+    case WB_KEYBOARD_ALT
+      Gas = 0;
+  
+  
+end
   
   % read the sensors, e.g.:
   %  rgb = wb_camera_get_image(camera);
@@ -95,7 +106,7 @@ while wb_robot_step(TIME_STEP) ~= -1
   
   wb_motor_set_velocity(LeftGas, Gas);
   wb_motor_set_velocity(RightGas, Gas);
-  DstSensorL
+  %DstSensorL
   % if your code plots some graphics, it needs to flushed like this:
   %drawnow;
 

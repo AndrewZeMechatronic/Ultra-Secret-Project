@@ -17,14 +17,16 @@
 desktop;
 %keyboard;
 
-TIME_STEP = 128;
+TIME_STEP = 8;
 
 wb_keyboard_enable(1);
 
 DstSensorL = wb_robot_get_device('DstSensorL');
 DstSensorR = wb_robot_get_device('DstSensorR');
+DstSensorSpeed = wb_robot_get_device('DstSensorSpeed');
 wb_distance_sensor_enable(DstSensorL, TIME_STEP);
 wb_distance_sensor_enable(DstSensorR, TIME_STEP); 
+wb_distance_sensor_enable(DstSensorSpeed, TIME_STEP);
 
 RightSteer = wb_robot_get_device('RightSteer');
 wb_motor_set_position(RightSteer, 0);
@@ -71,21 +73,17 @@ while wb_robot_step(TIME_STEP) ~= -1
 Key = wb_keyboard_get_key(); 
 
 
-
 DstSensorL_Value = wb_distance_sensor_get_value(DstSensorL);
 DstSensorR_Value = wb_distance_sensor_get_value(DstSensorR);
+DstSensorSpeed_Value = wb_distance_sensor_get_value(DstSensorSpeed);
+%DstSensorL_Value = wb_distance_sensor_get_value(DstSensorL);
+%DstSensorR_Value = wb_distance_sensor_get_value(DstSensorR);
+
 direction = sqrt(DstSensorL_Value^2 + DstSensorR_Value^2);
 beta = (acos(DstSensorR_Value/direction)) - pi/4;
-  Steer = -beta
+Steer = -beta;
 
-  switch (Key)
-    case WB_KEYBOARD_UP 
-      Gas = Gas + 2;
-    case WB_KEYBOARD_DOWN 
-      Gas = Gas - 2;
-  
-  
-  end
+Gas = (20/2048)*DstSensorSpeed_Value
   
   % read the sensors, e.g.:
   %  rgb = wb_camera_get_image(camera);

@@ -2,43 +2,40 @@
 % File:          ProjectXControler.m
 % Date:
 % Description:
-% Author:
+% Author: Ondrej Richter, Jan Komorous
 % Modifications:
 
-%left_motor = wb_robot_get_device('left wheel motor');
-%right_motor = wb_robot_get_device('right wheel motor');
-%wb_motor_set_position(left_motor, inf);
-%wb_motor_set_position(right_motor, inf);
-%wb_motor_set_velocity(left_motor, 0);
-%wb_motor_set_velocity(right_motor, 0);
 
-% uncomment the next two lines if you want to use
-% MATLAB's desktop to interact with the controller:
 desktop;
-%keyboard;
 
 TIME_STEP = 8;
 
-wb_keyboard_enable(1);
 
+% Definovani leveho, praveho a stredniho sensoru
 DstSensorL = wb_robot_get_device('DstSensorL');
 DstSensorR = wb_robot_get_device('DstSensorR');
 DstSensorSpeed = wb_robot_get_device('DstSensorSpeed');
+
+% Zapnuti komunikace mezi sensory a kontrolerem
 wb_distance_sensor_enable(DstSensorL, TIME_STEP);
 wb_distance_sensor_enable(DstSensorR, TIME_STEP); 
 wb_distance_sensor_enable(DstSensorSpeed, TIME_STEP);
 
+% Definovani zatacecich motoru
 RightSteer = wb_robot_get_device('RightSteer');
-wb_motor_set_position(RightSteer, 0);
-
 LeftSteer = wb_robot_get_device('LeftSteer');
+
+% Centrovani prednich kol
+wb_motor_set_position(RightSteer, 0);
 wb_motor_set_position(LeftSteer, 0);
 
+% Definovani motoru zadniho nahonu
 LeftGas = wb_robot_get_device('LeftGasMotor');
+RightGas = wb_robot_get_device('RightGasMotor');
+
+% Nulovani a nastaveni nekonecneho rozsahu motoru zadniho nahonu
 wb_motor_set_velocity(LeftGas, 0);
 wb_motor_set_position(LeftGas, inf);
-
-RightGas = wb_robot_get_device('RightGasMotor');
 wb_motor_set_velocity(RightGas, 0);
 wb_motor_set_position(RightGas, inf);
 
@@ -48,60 +45,34 @@ wb_motor_set_position(RightGas, inf);
 %gps = wb_robot_get_device('gps');
 %wb_gps_enable(gps, TIME_STEP);
 
-
-%display = wb_robot_get_device('display');
-%width = wb_display_get_width(display);
-%height = wb_display_get_height(display);
-
-
-
-%motors = wb_robot_get_device('rotational motor');
-%wb_motor_set_position(motors, inf);
-%wb_motor_set_velocity(motors, 0);
-
-% main loop:
-% perform simulation steps of TIME_STEP milliseconds
-% and leave the loop when Webots signals the termination
-%
-
-
+% Definovani promennych
 Steer = 0;
 Gas = 0;
 
+% Hlavni Loop
 while wb_robot_step(TIME_STEP) ~= -1
  
-Key = wb_keyboard_get_key(); 
-
-
+% Cteni dat z praveho a leveho sensoru
 DstSensorL_Value = wb_distance_sensor_get_value(DstSensorL);
 DstSensorR_Value = wb_distance_sensor_get_value(DstSensorR);
-DstSensorSpeed_Value = wb_distance_sensor_get_value(DstSensorSpeed);
-%DstSensorL_Value = wb_distance_sensor_get_value(DstSensorL);
-%DstSensorR_Value = wb_distance_sensor_get_value(DstSensorR);
 
+% Cteni dat z rychlostniho sensoru
+DstSensorSpeed_Value = wb_distance_sensor_get_value(DstSensorSpeed);
+
+% Vypocet vyslednice praveho a leveho sensoru
 direction = sqrt(DstSensorL_Value^2 + DstSensorR_Value^2);
 beta = (acos(DstSensorR_Value/direction)) - pi/4;
 Steer = -beta;
 
+% Prevod hodnot ze stredniho sensoru na rychlost formule
 Gas = (20/2048)*DstSensorSpeed_Value
   
-  % read the sensors, e.g.:
-  %  rgb = wb_camera_get_image(camera);
+% Prirazeni namerenych a vypoctenych hodnot motorum pro ztaceni
+wb_motor_set_position(RightSteer, Steer);
+wb_motor_set_position(LeftSteer, Steer);
 
-  % Process here sensor data, images, etc.
-
-  % send actuator commands, e.g.:
-  %wb_motor_set_velocity(motor, 0);
-  %wb_motor_set_velocity(motor2, 0);
-  wb_motor_set_position(RightSteer, Steer);
-  wb_motor_set_position(LeftSteer, Steer);
-  
-  wb_motor_set_velocity(LeftGas, Gas);
-  wb_motor_set_velocity(RightGas, Gas);
-  %DstSensorL
-  % if your code plots some graphics, it needs to flushed like this:
-  %drawnow;
+% Prirazeni namerenych a vypoctenych hodnot motorum pro zadni nahon
+wb_motor_set_velocity(LeftGas, Gas);
+wb_motor_set_velocity(RightGas, Gas);
 
 end
-
-% cleanup code goes here: write data to files, etc.

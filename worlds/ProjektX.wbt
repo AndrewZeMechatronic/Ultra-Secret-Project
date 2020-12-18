@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.4405719912926205 -0.8777464811491399 -0.18830144799963147 1.2387193362802538
-  position -5.983630050359864 7.614745633569768 -32.42405437361625
+  orientation 0.13813055363764395 0.9873978591049785 0.07723611840753558 5.218232860744719
+  position -1.8124560516706687 1.9478795576827375 -33.763434171146855
   follow "Formula"
   followType "Mounted Shot"
 }
@@ -21,6 +21,32 @@ RectangleArena {
   floorAppearance Asphalt {
   }
   wallHeight 0
+}
+Solid {
+  translation -8.10018 0.09 -36.7992
+  rotation 0 -1 0 0.6544963061004253
+  children [
+    DEF fix Shape {
+      geometry Box {
+        size 0.1 2 10
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE fix
+}
+Solid {
+  translation -20.2501 0.09 -45.3355
+  rotation 0 -1 0 1.9635
+  children [
+    DEF fix Shape {
+      geometry Box {
+        size 0.1 2 20
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE fix
 }
 Robot {
   translation 4.03002 0.74 -37.16
